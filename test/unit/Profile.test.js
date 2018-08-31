@@ -1,16 +1,17 @@
 const { assert } = require('chai');
-// const { Types } = require('mongoose');
+const { Types } = require('mongoose');
 const Profile = require('../../lib/models/Profile');
 // const { getErrors } = require('./helpers');
 
 describe('Profile model', () => {
     it('is a valid good model', () => {
         const data = {
-            userId: '_jeioqruejkdsa',
+            userId: Types.ObjectId(),
             avatar: 'awesomeLlama.jpg',
             location: 'Portland',
             money: 700,
-            rank: 'diamond'
+            rank: 'diamond',
+            roles: ['User']
         };
 
         const profile = new Profile(data);
