@@ -4,6 +4,7 @@ const { dropCollection } = require('./db');
 
 describe('Auth API', () => {
     beforeEach(() => dropCollection('users'));
+    beforeEach(() => dropCollection('profiles'));
 
     let token = null;
 
@@ -12,6 +13,7 @@ describe('Auth API', () => {
             .post('/api/auth/signup')
             .send({
                 email: 'me@me.com',
+                name: 'tester',
                 password: 'abc'
             })
             .then(({ body }) => token = body.token);
