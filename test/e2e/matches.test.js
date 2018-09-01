@@ -56,24 +56,25 @@ describe.only('the Matches API', () => {
             });
     });
 
-    const testMatch = {
-        players: [profile._id, profile2._id],
-        game: {
-            player1: {
-                troops: 2,
-                wins: 2
-            },
-            player2: {
-                troops: 1,
-                wins: 1
+    beforeEach(() => {
+        return save('matches', {
+            players: [profile._id, profile2._id],
+            game: {
+                player1: {
+                    troops: 2,
+                    wins: 2
+                },
+                player2: {
+                    troops: 1,
+                    wins: 1
+                },
             },
             winner: profile._id
-        }
-    };
-
-    beforeEach(() => {
-        return save('matches', testMatch)
-            .then(data => match = data);
+        })
+            .then(data => {
+                console.log('**DATA**', data);
+                match = data;
+            });
     });
 
     it('posts shit', () => {
