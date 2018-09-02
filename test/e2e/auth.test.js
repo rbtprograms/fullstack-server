@@ -2,7 +2,7 @@ const { assert } = require('chai');
 const request = require('./request');
 const { dropCollection } = require('./db');
 
-describe('Auth API', () => {
+describe.only('Auth API', () => {
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('profiles'));
 
@@ -44,7 +44,7 @@ describe('Auth API', () => {
                 password: 'abc'
             })
             .then(({ body }) => {
-                console.log(body);`
+                assert.equal(body.profile.name, 'tester');
                 assert.ok(body.token);
 
             });

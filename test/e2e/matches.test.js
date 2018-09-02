@@ -26,7 +26,7 @@ const save = (path, data) => {
         .then(({ body }) => body);
 };
 
-describe.only('the Matches API', () => {
+describe('the Matches API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('profiles'));
