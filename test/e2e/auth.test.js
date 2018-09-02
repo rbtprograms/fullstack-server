@@ -44,7 +44,9 @@ describe('Auth API', () => {
                 password: 'abc'
             })
             .then(({ body }) => {
+                console.log(body);`
                 assert.ok(body.token);
+
             });
     });
     it('Gives 400 on signup of same email', () => {
