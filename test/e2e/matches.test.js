@@ -56,9 +56,9 @@ describe.only('the Matches API', () => {
             });
     });
 
+    const player1Id = profile1._id;
+    const player2Id = profile2._id;
     beforeEach(() => {
-        const player1Id = profile1._id;
-        const player2Id = profile2._id;
         const data = {
             players: [player1Id, player2Id],
             game: {
@@ -70,8 +70,8 @@ describe.only('the Matches API', () => {
                     troops: 1,
                     wins: 1
                 },
+                winner: player1Id
             },
-            winner: player1Id
         };
         return save('matches', data, token1)
             .then(data => {
@@ -79,8 +79,18 @@ describe.only('the Matches API', () => {
             });
     });
 
-
     it('posts shit', () => {
         assert.equal(match.players.length, 2);
+    });
+
+    it('GETS user\'s stats', () => {
+        return request
+            .get(`/api/dashboard/stats/${player1Id}`)
+            .set('Authorization', token)
+            .then(checkOk)
+            .then(({ body }) => {
+                
+            })
+
     });
 });
