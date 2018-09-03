@@ -7,10 +7,15 @@ describe('Profile model', () => {
         const data = {
             name: 'tester'
         };
-
+        const expected = {
+            name: 'tester',
+            avatar: 'avatar.png',
+            rank: 'Captain',
+            location: ''
+        }
         const profile = new Profile(data);
 
-        data._id = profile._id;
-        assert.deepEqual(profile.toJSON(), data);
+        expected._id = profile._id;
+        assert.deepEqual(profile.toJSON(), expected);
     });
 });
