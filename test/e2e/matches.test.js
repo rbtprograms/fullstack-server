@@ -72,12 +72,18 @@ describe.only('the Matches API', () => {
             winner: profile._id
         })
             .then(data => {
-                console.log('**DATA**', data);
+                // console.log('**DATA**', data);
                 match = data;
             });
     });
 
-    it('posts shit', () => {
-        console.log('**Match**', match);
+    it('posts a match to the db', () => {
+        assert.isOk(match._id);
     });
+
+    it('gets a match out of the database by id', () => {
+        return request
+            .get(`/api/matches/${}`)
+            .then(checkOk)
+    })
 });
