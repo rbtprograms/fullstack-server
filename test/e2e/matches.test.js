@@ -9,7 +9,7 @@ const checkOk = res => {
 
 const testUser = {
     email: 'me@me.com',
-    name: 'tester',
+    name: 'tester1',
     password: 'abc'
 };
 const testUser2 = {
@@ -18,9 +18,10 @@ const testUser2 = {
     password: '123'
 };
 
-const save = (path, data) => {
+const save = (path, data, token) => {
     return request
         .post(`/api/${path}`)
+        .set('Authorization', token)
         .send(data)
         .then(checkOk)
         .then(({ body }) => body);
@@ -29,9 +30,10 @@ const save = (path, data) => {
 describe.only('the Matches API', () => {
 
     beforeEach(() => dropCollection('users'));
+    beforeEach(() => dropCollection('matches'));
     beforeEach(() => dropCollection('profiles'));
 
-    let token, token2, profile, profile2, match;
+    let token1, token2, profile1, profile2, match;
 
     beforeEach(() => {
         return request
@@ -39,9 +41,8 @@ describe.only('the Matches API', () => {
             .send(testUser)
             .then(checkOk)
             .then(({ body }) => {
-                token = body.token;
-                profile = body.profile;
-                console.log('**TOKEN1', token);
+                token1 = body.token;
+                profile1 = body.profile;
             });
     });
     beforeEach(() => {
@@ -52,33 +53,35 @@ describe.only('the Matches API', () => {
             .then(({ body }) => {
                 token2 = body.token;
                 profile2 = body.profile;
-                console.log('**TOKEN2', token2);
             });
     });
 
     beforeEach(() => {
-        return save('matches', {
-            players: [profile._id, profile2._id],
+        const player1Id = profile1._id;
+        const player2Id = profile2._id;
+        const data = {
+            players: [player1Id, player2Id],
             game: {
-                player1: {
+                [player1Id]: {
                     troops: 2,
                     wins: 2
                 },
-                player2: {
+                [player2Id]: {
                     troops: 1,
                     wins: 1
                 },
             },
-            winner: profile._id
-        })
+            winner: player1Id
+        };
+        return save('matches', data, token1)
             .then(data => {
-                // console.log('**DATA**', data);
                 match = data;
             });
     });
 
-    it('posts a match to the db', () => {
-        assert.isOk(match._id);
+
+    it('posts shit', () => {
+        assert.equal(match.players.length, 2);
     });
 
     it('gets a match out of the database by id', () => {

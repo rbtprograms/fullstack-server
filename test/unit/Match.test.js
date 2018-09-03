@@ -8,11 +8,11 @@ describe('Match Model', () => {
         const data = {
             players: [Types.ObjectId(), Types.ObjectId()],
             game: {
-                player1: {
+                player1Id: {
                     troops: 2,
                     wins: 2
                 },
-                player2: {
+                player2Id: {
                     troops: 1,
                     wins: 1
                 },
@@ -30,7 +30,7 @@ describe('Match Model', () => {
         const match = new Match({});
 
         const errors = getErrors(match.validateSync(), 2);
+        assert.equal(errors.players.kind, 'required');
         assert.equal(errors.game.kind, 'required');
-        assert.equal(errors.winner.kind, 'required');
     });
 });
