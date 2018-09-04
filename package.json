@@ -1,7 +1,7 @@
 {
-  "name": "mongoose-template",
+  "name": "fullstack-server",
   "version": "1.0.0",
-  "description": "template for backend web server using express and mongoose",
+  "description": "Fullstack server for Gorts",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+<yourLinkHere>.git"
+    "url": "git+https://github.com/rbtprograms/fullstack-server.git"
   },
   "author": "Injoong Yoon <injoongyoon@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "<yourLinkHere>/issues"
+    "url": "https://github.com/rbtprograms/fullstack-server/issues"
   },
-  "homepage": "<yourLinkHere>#readme",
+  "homepage": "https://github.com/rbtprograms/fullstack-server#readme",
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
@@ -35,10 +35,10 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "dotenv": "^5.0.1",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.12",
+    "mongoose": "^5.2.4",
     "morgan": "^1.9.0"
   }
 }
