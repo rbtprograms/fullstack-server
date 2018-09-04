@@ -85,12 +85,12 @@ describe.only('the Matches API', () => {
 
     it('GETS user\'s stats', () => {
         return request
-            .get(`/api/dashboard/stats/${profile1._id}`)
-            .set('Authorization', token1)
+            .get(`/api/matches/stats/${profile1._id}`)
+            // .set('Authorization', token1)
             .then(checkOk)
             .then(({ body }) => {
                 console.log('BODY', body);
-                assert.deepEqual(body, [{ wins: 1 }, { losses: 0 }]);
+                assert.deepEqual(body, { totalWins: 1, totalGames: 1 });
             });
     });
 });
