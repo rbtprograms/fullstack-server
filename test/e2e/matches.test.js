@@ -70,8 +70,8 @@ describe.only('the Matches API', () => {
                     troops: 1,
                     wins: 1
                 },
+                winner: player1Id
             },
-            winner: player1Id
         };
         return save('matches', data, token1)
             .then(data => {
@@ -79,8 +79,18 @@ describe.only('the Matches API', () => {
             });
     });
 
-
     it('posts shit', () => {
         assert.equal(match.players.length, 2);
+    });
+
+    it('GETS user\'s stats', () => {
+        return request
+            .get(`/api/matches/stats/${profile1._id}`)
+            // .set('Authorization', token1)
+            .then(checkOk)
+            .then(({ body }) => {
+                console.log('BODY', body);
+                assert.deepEqual(body, { totalWins: 1, totalGames: 1 });
+            });
     });
 });
