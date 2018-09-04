@@ -12,7 +12,7 @@ describe('Profile model', () => {
             avatar: 'avatar.png',
             rank: 'Captain',
             location: ''
-        }
+        };
         const profile = new Profile(data);
 
         expected._id = profile._id;

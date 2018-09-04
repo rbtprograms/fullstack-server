@@ -27,7 +27,7 @@ const save = (path, data, token) => {
         .then(({ body }) => body);
 };
 
-describe.only('the Matches API', () => {
+describe('the Matches API', () => {
 
     beforeEach(() => dropCollection('users'));
     beforeEach(() => dropCollection('matches'));
@@ -43,6 +43,7 @@ describe.only('the Matches API', () => {
             .then(({ body }) => {
                 token1 = body.token;
                 profile1 = body.profile;
+                assert.isOk(token1);
             });
     });
     beforeEach(() => {
@@ -53,6 +54,7 @@ describe.only('the Matches API', () => {
             .then(({ body }) => {
                 token2 = body.token;
                 profile2 = body.profile;
+                assert.isOk(token2);
             });
     });
 
@@ -84,9 +86,9 @@ describe.only('the Matches API', () => {
         assert.equal(match.players.length, 2);
     });
 
-    it('gets a match out of the database by id', () => {
-        return request
-            .get(`/api/matches/${}`)
-            .then(checkOk)
-    })
+    // it('gets a match out of the database by id', () => {
+    //     return request
+    //         .get(`/api/matches/${}`)
+    //         .then(checkOk)
+    // })
 });
