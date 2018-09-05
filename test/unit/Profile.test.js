@@ -9,7 +9,7 @@ describe('Profile model', () => {
         };
         const expected = {
             name: 'tester',
-            avatar: 'avatar.png',
+            avatar: 'https://i.imgur.com/ChAFdeZ.png',
             rank: 'Captain',
             location: ''
         };
